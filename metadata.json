@@ -1,0 +1,6 @@
+{
+  "name": "Purchase Order System",
+  "description": "Sistem manajemen purchase order terintegrasi dengan Google Sheets sebagai database, fitur dashboard analitik, dan manajemen realisasi PO.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
