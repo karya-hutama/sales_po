@@ -1,15 +1,8 @@
-export type UserLevel = 'Sales' | 'Admin';
-
-export interface User {
-  id_user: string;
-  username: string;
-  level: UserLevel;
-}
-
 export interface Product {
   id_product: string;
   nama_product: string;
   satuan_stock: string;
+  kategori?: string;
 }
 
 export interface Customer {
@@ -27,21 +20,36 @@ export interface Rute {
 
 export interface PO {
   id_row: number;
+  po_id: string;
   tanggal_po: string;
-  id_sales: string;
-  id_customer: string;
+  customer: string;
+  rute: string;
   product: string;
-  qty: number;
-  id_rute: string;
-  status_po: 'Belum Diproses' | 'Sudah Diproses';
+  qty_po: number;
   qty_realisasi: number;
-  po_id: string; // Internal grouping ID
+  status_po: string;
 }
 
-export interface POAnalysisRow extends PO {
-  nama_sales: string;
-  nama_customer: string;
-  alamat: string;
-  rute: string;
-  persentase: number;
+export interface AppData {
+  products: Product[];
+  customers: Customer[];
+  routes: Rute[];
+  pos: PO[];
+}
+
+export interface User {
+  id: string;
+  username: string;
+  role: 'admin' | 'staff';
+}
+
+export interface ViewProps {
+  data: AppData;
+  fetchData: () => Promise<void>;
+  setIsLoading: (loading: boolean) => void;
+  isLoading: boolean;
+  API_URL: string;
+  user: User | null;
+  confirm: (options: { title: string; message: string; onConfirm: () => void }) => void;
+  alert: (options: { title: string; message: string }) => void;
 }
