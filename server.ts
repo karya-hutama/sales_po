@@ -9,7 +9,8 @@ const __dirname = path.dirname(__filename);
 // Fungsi utama untuk menghubungkan server ke Google Apps Script
 function getAppsScriptConnection() {
   // Masukkan Link Deployment Web App Anda di bawah ini
-  const URL_TARGET = "https://script.google.com/macros/s/AKfycbzuiqDZ1iIlLIXX38hzQ9oAZXu5yOkxxUAKLMGxp6Wbid_fPVezRnHN3XxPMeCxnki8LA/exec";
+  const FALLBACK_URL = "https://script.google.com/macros/s/AKfycbzuiqDZ1iIlLIXX38hzQ9oAZXu5yOkxxUAKLMGxp6Wbid_fPVezRnHN3XxPMeCxnki8LA/exec";
+  const URL_TARGET = process.env.APPS_SCRIPT_URL || FALLBACK_URL;
   
   return {
     url: URL_TARGET,
